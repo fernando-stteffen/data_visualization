@@ -5,7 +5,7 @@ x_values = list(range(1,1001))
 y_values = [x**2 for x in x_values]
 
 
-plot.scatter(x_values, y_values,  s=40)
+plot.scatter(x_values, y_values, c=(0, 0, 0.8), edgecolor='none',  s=40)
 
 # Set chart title and label axes.
 plot.title("Square Numbers", fontsize=24)
