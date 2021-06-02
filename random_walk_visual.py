@@ -10,7 +10,7 @@ while True:
     rw.fill_walk()
     
     # Set the size of the plotting window
-    plot.figure(figsize=(20,12))
+    # ~ plot.figure(figsize=(20,12))
 
     point_numbers = list(range(rw.num_points))
     plot.scatter(rw.x_values, rw.y_values, c=point_numbers, 
