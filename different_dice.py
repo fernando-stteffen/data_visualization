@@ -4,12 +4,12 @@ from die import Die
 
 # Create a D6.
 die_1 = Die()
-die_2 = Die()
+die_2 = Die(10)
 
 
 # Make some rolls, and store results in a list
 results = []
-for roll_num in range(1000):
+for roll_num in range(50000):
     result = die_1.roll() + die_2.roll()
     results.append(result)
     
@@ -21,19 +21,19 @@ for value in range(2, max_result+1):
     frequency = results.count(value)
     frequencies.append(frequency)
 
-
+    
     
 # Visualize the results.
 historic = pygal.Bar()
 
-historic.title = "Results of rolling two D6 1000 times."
+historic.title = "Results of rolling a D6 and a D10 50,000 times."
 labels = list(range(2,max_result+1))
-
 
 historic.x_labels = labels
 historic.x_title = "Result"
 historic.y_title = "Frequency of Result"
 
-historic.add('D6 + D6', frequencies)
+historic.add('D6 + D10', frequencies)
 historic.render_to_file('die_visual.svg')
+
 
