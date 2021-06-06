@@ -19,7 +19,7 @@ print("Total repositories:", response_dictionary['total_count'])
 # Explore information about the repositories.
 repositories_dictionaries = response_dictionary['items']
 
-names, stars = [], []
+names, plot_datas = [], []
 
 
 
@@ -27,7 +27,15 @@ names, stars = [], []
 print("\nSelected information about first repository:")
 for repository_dict in repositories_dictionaries:
     names.append(repository_dict['name'])
-    stars.append(repository_dict['stargazers_count'])
+    
+    plot_data = {
+        'value': repository_dict['stargazers_count'],
+        'label': repository_dict['description'] or "",
+        'xlink': repository_dict['html_url']
+    }
+    
+    plot_datas.append(plot_data)
+    
     
     
 chart_style = LS('#333366', base_style=LCS)
@@ -43,13 +51,10 @@ chart_config.show_y_guides = False
 chart_config.width = 1000
 
 
-
-
-
 chart = pygal.Bar(chart_config, style=chart_style)
 chart.title = "Most-starred Python projects on Github"
 chart.x_labels = names
 
-chart.add('', stars)
+chart.add('', plot_datas)
 chart.render_to_file('python_repos.svg')
 
